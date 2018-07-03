@@ -22,6 +22,26 @@ allprojects {
     }
 }
 
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+ext{
+
+    compileSdkVersion = 27
+    compileSdkMinVersion = 16
+    compileTargetSdkVersion = 27
+
+    supportVersion = "27.1.1"
+
+    retrofitVersion = "2.4.0"
+    okhttpLoggingInterceptorVersion = "3.10.0"
+
+    junitVersion = "4.12"
+    supportTestVersion = "1.0.2"
+    supportTestEspressoVersion = "3.0.2"
+
+}
+
