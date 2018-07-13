@@ -1,6 +1,7 @@
 package com.example.tse.news.database
 
 import android.arch.lifecycle.LiveData
+import android.arch.paging.DataSource
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
@@ -15,5 +16,5 @@ interface ArticleDao {
     fun insert(article: List<Article>)
 
     @Query("SELECT * FROM articles")
-    fun getArticles(): LiveData<List<Article>>
+    fun getArticles(): DataSource.Factory<Int, Article>
 }

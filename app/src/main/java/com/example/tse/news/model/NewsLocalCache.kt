@@ -1,6 +1,7 @@
 package com.example.tse.news.model
 
 import android.arch.lifecycle.LiveData
+import android.arch.paging.DataSource
 import android.util.Log
 import com.example.tse.news.database.ArticleDao
 import java.util.concurrent.Executor
@@ -17,7 +18,7 @@ class NewsLocalCache(private val articleDao: ArticleDao, private val ioExcecutor
         }
     }
 
-    fun articlesByCountry(): LiveData<List<Article>> {
+    fun articlesByCountry(): DataSource.Factory<Int, Article> {
         return articleDao.getArticles()
     }
 

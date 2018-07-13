@@ -2,6 +2,7 @@ package com.example.tse.news
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.arch.paging.PagedList
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         //var decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         //list.addItemDecoration(decoration)
        // list.layoutManager = LinearLayoutManager(this)
-       setUpScrollListener()
+       //setUpScrollListener()
 
         initAdapter()
         viewModel.articles
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initAdapter(){
         list.adapter = adapter
-        viewModel.articles.observe(this, Observer<List<Article>>{
+        viewModel.articles.observe(this, Observer<PagedList<Article>>{
             Log.e(TAG, "List: ${it?.size}")
             showEmptyList(it?.size == 0)
             adapter.submitList(it)

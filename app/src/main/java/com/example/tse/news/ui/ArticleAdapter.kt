@@ -1,5 +1,6 @@
 package com.example.tse.news.ui
 
+import android.arch.paging.PagedListAdapter
 import android.support.v7.recyclerview.extensions.ListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
@@ -9,7 +10,7 @@ import android.view.ViewGroup
 import com.example.tse.news.model.Article
 
 
-class ArticleAdapter : ListAdapter<Article, RecyclerView.ViewHolder>(A_COMPARATOR) {
+class ArticleAdapter : PagedListAdapter<Article, RecyclerView.ViewHolder>(A_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ArticleViewHolder.create(parent)
