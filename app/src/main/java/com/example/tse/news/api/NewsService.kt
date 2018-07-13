@@ -17,11 +17,13 @@ interface NewsService {
     /**
     * Get News by country
     * */
-    @GET("top-headlines")
+    @GET("everything")
    fun  getNewsByCountry(
-            @Query("country") country: String,
-            @Query("apiKey") apiKey: String
-    ): Call<NewsByCountryResponse>
+            @Query("q") topic: String,
+            @Query("apiKey") apiKey: String,
+            @Query("page") page: Int,
+            @Query("pageSize") pageSize: Int
+    ): Call<NewsByTopicResponse>
 
 
     companion object {

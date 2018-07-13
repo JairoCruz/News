@@ -11,24 +11,29 @@ private const val TAG = "SearchNews"
 
 
 fun searchNews(service: NewsService,
-               query: String,
+               topic: String,
                apiKey: String,
+               page: Int,
+               pageSize: Int,
                onSuccess: (article: List<Article>) -> Unit,
                onError: (error: String) -> Unit){
 
-    Log.e(TAG, "Query: $query")
+    Log.e(TAG, "Query: $topic")
 
-    service.getNewsByCountry(query, apiKey).enqueue(
-            object : Callback<NewsByCountryResponse> {
-                override fun onFailure(call: Call<NewsByCountryResponse>?, t: Throwable?) {
+    service.getNewsByCountry(topic, apiKey, page, pageSize).enqueue(
+            object : Callback<NewsByTopicResponse> {
+                override fun onFailure(call: Call<NewsByTopicResponse>?, t: Throwable?) {
                     Log.e(TAG, "Error en obtener los datos")
                     onError(t?.message ?: "unknown error")
                 }
 
-                override fun onResponse(call: Call<NewsByCountryResponse>?, response: Response<NewsByCountryResponse>?) {
+                override fun onResponse(call: Call<NewsByTopicResponse>?, response: Response<NewsByTopicResponse>?) {
                     Log.e(TAG, "La respuesta es $response")
                     if (response!!.isSuccessful){
                         val articles = response.body()?.articles ?: emptyList()
+                        val totalResult = response.body()?.total ?: 0
+                        val status = response.body()?.status ?: ""
+                        Log.e(TAG, "Total de paginas: $totalResult y Estatus: $status")
                         onSuccess(articles)
                     }else{
                         onError(response.errorBody()?.string() ?: "Unknown error")
