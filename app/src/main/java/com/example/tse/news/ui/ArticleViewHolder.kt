@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.article_view.view.*
 class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val title: TextView = view.findViewById(R.id.title)
-   // private val author: TextView = view.findViewById(R.id.author)
     private val imageTitle: ImageView = view.findViewById(R.id.imageTitle)
     private val publicationDate: TextView  = view.findViewById(R.id.publicationDate)
 

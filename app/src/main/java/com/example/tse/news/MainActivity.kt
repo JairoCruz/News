@@ -27,21 +27,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        searchNews(NewsService.create(), COUNTRY, API_KEY, {
-//            article ->  run{ for (art in article){
-//            Log.e("MainActivity", "valor ${art.author}")
-//        }}
-//        },{
-//            error -> Log.e("MainActivity", "error")
-//        })
 
         viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(this))
                 .get(ListNewsViewModel::class.java)
-
-        //var decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        //list.addItemDecoration(decoration)
-       // list.layoutManager = LinearLayoutManager(this)
-       //setUpScrollListener()
 
         initAdapter()
         viewModel.articles
@@ -71,26 +59,6 @@ class MainActivity : AppCompatActivity() {
             list.visibility = View.VISIBLE
         }
     }
-    companion object {
-        private const val VISIBLE_THRESHOLD = 5
-    }
 
-    private fun setUpScrollListener(){
-        val listLayoutManager = list.layoutManager as LinearLayoutManager
-        // list name of RecyclerView
-        list.addOnScrollListener(object: RecyclerView.OnScrollListener(){
-            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val totalItemCount = listLayoutManager.itemCount
-                val visibleItemCount = listLayoutManager.childCount
-                val lastVisibleItem = listLayoutManager.findLastVisibleItemPosition()
-                Log.e(TAG, "Total Item Count: $totalItemCount, Visible Item Count: $visibleItemCount, Last Item Visible: $lastVisibleItem")
-//                if (lastVisibleItem == totalItemCount - 1){
-//                    Log.e(TAG, "PIDO")
-//                }
-               viewModel.listScrolled(visibleItemCount, lastVisibleItem, totalItemCount)
-            }
-        })
-    }
 
 }
