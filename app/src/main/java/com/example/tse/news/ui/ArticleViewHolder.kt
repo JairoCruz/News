@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.tse.news.R
 import com.example.tse.news.model.Article
@@ -20,6 +22,12 @@ class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val publicationDate: TextView  = view.findViewById(R.id.publicationDate)
 
     private var article: Article? = null
+
+    init {
+        view.setOnClickListener{
+            findNavController(it).navigate(R.id.action_listNewsFragment_to_detailNewsFragment)
+        }
+    }
 
     fun bind(article: Article?){
         if (article != null){
