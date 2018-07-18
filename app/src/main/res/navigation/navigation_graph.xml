@@ -12,11 +12,16 @@
         tools:layout="@layout/fragment_list_news">
         <action
             android:id="@+id/action_listNewsFragment_to_detailNewsFragment"
-            app:destination="@id/detailNewsFragment" />
+            app:destination="@id/detailNewsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/detailNewsFragment"
-        android:name="com.example.tse.news.DetailNewsFragment"
+        android:name="com.example.tse.news.ui.DetailNewsFragment"
         android:label="Detail News"
         tools:layout="@layout/fragment_detail_news" />
 </navigation>
