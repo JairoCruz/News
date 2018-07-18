@@ -2,9 +2,12 @@
     <string name="app_name">News</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment">Titulo de la noticia</string>
     <string name="authoTextDumy">Jairo Cruz</string>
     <string name="titleDummy">Busqueda de representantes</string>
-    <string name="publishedAt">00-00-0000</string>
+    <string name="publishedAt">Fri, 13 Jul 2018</string>
     <string name="txtEmptyList">Ups! No hay noticias disponibles</string>
+    <string name="imageContentDescription">Imagen de portada</string>
+    <string name="txtDescription">Velit labore sed est, cursus sapien ut fringilla pellentesque ligula ipsum, dui duis urna convallis. Viverra purus vel convallis mollis donec. In id risus in vitae diam, mauris curabitur pede mi nibh vestibulum, nam mattis aenean enim praesent quam ut, dis perferendis pellentesque faucibus magna mauris. Erat wisi pellentesque sit pellentesque mollis. Ipsum pharetra odio. Dui vel nec ornare amet tellus eget, cras in, per metus diam ut phasellus sit curabitur, urna erat ut morbi suspendisse non. Cum amet.</string>
+    <string name="txtAuthorDummy">By Jairo Jose Pineda</string>
 </resources>

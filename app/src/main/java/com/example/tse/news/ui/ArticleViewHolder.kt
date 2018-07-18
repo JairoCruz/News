@@ -1,5 +1,6 @@
 package com.example.tse.news.ui
 
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,7 +26,13 @@ class ArticleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     init {
         view.setOnClickListener{
-            findNavController(it).navigate(R.id.action_listNewsFragment_to_detailNewsFragment)
+            var bundle = Bundle()
+            bundle.putString("title", article?.title)
+            bundle.putString("urlToImage", article?.urlToImage)
+            bundle.putString("author", article?.author)
+            bundle.putString("description", article?.description)
+            bundle.putString("publishedAt", FormatDate.toSimpleString(article!!.publishedAt))
+            findNavController(it).navigate(R.id.action_listNewsFragment_to_detailNewsFragment, bundle)
         }
     }
 
