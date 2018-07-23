@@ -1,8 +1,8 @@
 package com.example.tse.news.repository
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.paging.PagedList
 import android.util.Log
 import com.example.tse.news.api.NewsService
 import com.example.tse.news.api.searchNews

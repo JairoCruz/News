@@ -1,9 +1,9 @@
 package com.example.tse.news.ui
 
-import android.arch.paging.PagedListAdapter
-import android.support.v7.recyclerview.extensions.ListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.ViewGroup
 
@@ -26,11 +26,9 @@ class ArticleAdapter : PagedListAdapter<Article, RecyclerView.ViewHolder>(A_COMP
 
     companion object {
         private val A_COMPARATOR = object : DiffUtil.ItemCallback<Article>() {
-            override fun areItemsTheSame(oldItem: Article?, newItem: Article?): Boolean =  oldItem?.title == newItem?.title
+            override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean = oldItem.title == newItem.title
 
-
-            override fun areContentsTheSame(oldItem: Article?, newItem: Article?): Boolean =
-                    oldItem == newItem
+            override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean = oldItem == newItem
         }
     }
 

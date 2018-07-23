@@ -1,8 +1,8 @@
 package com.example.tse.news.ui
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
-import android.arch.paging.PagedList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.paging.PagedList
 import com.example.tse.news.model.Article
 import com.example.tse.news.model.ArticleByTopicResult
 import com.example.tse.news.repository.ArticleRepository

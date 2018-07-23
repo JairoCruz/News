@@ -30,18 +30,18 @@ task clean(type: Delete) {
 
 ext{
 
-    compileSdkVersion = 27
+    compileSdkVersion = 28
     compileSdkMinVersion = 16
     compileTargetSdkVersion = 27
 
 
 
-    supportVersion = "27.1.1"
+    supportVersion = '1.0.0-alpha1'
 
 
-    roomVersion = "1.1.1"
-    lifecycleVersion = "1.1.1"
-    pagingVersion = "1.0.0"
+    roomVersion = '2.0.0-alpha1'
+    lifecycleVersion = '2.0.0-alpha1'
+    pagingVersion = '2.0.0-alpha1'
     navigationVersion = "1.0.0-alpha03"
 
     glideVersion = "4.7.1"
@@ -49,8 +49,8 @@ ext{
     okhttpLoggingInterceptorVersion = "3.10.0"
 
     junitVersion = "4.12"
-    supportTestVersion = "1.0.2"
-    supportTestEspressoVersion = "3.0.2"
+    supportTestVersion = '1.1.0-alpha3'
+    supportTestEspressoVersion = '3.1.0-alpha3'
 
 }
 

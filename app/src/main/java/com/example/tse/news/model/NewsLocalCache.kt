@@ -1,7 +1,7 @@
 package com.example.tse.news.model
 
-import android.arch.lifecycle.LiveData
-import android.arch.paging.DataSource
+import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import android.util.Log
 import com.example.tse.news.database.ArticleDao
 import java.util.concurrent.Executor

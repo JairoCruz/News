@@ -1,6 +1,6 @@
 package com.example.tse.news
 
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProvider
 import android.content.Context
 import com.example.tse.news.api.NewsService
 import com.example.tse.news.database.ArticleDatabase

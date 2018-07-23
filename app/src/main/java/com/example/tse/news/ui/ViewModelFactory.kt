@@ -1,7 +1,7 @@
 package com.example.tse.news.ui
 
-import android.arch.lifecycle.ViewModel
-import android.arch.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.tse.news.repository.ArticleRepository
 
 class ViewModelFactory(private val repository: ArticleRepository): ViewModelProvider.Factory {
