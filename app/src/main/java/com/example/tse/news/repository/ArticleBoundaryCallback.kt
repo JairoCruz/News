@@ -16,6 +16,8 @@ class ArticleBoundaryCallback(
 
     private val TOPIC = "apple"
     private val API_KEY = "94294f4227bf4600849e1697d6a48ec1"
+    private val SOURCES = "abc-news"
+    private val LANGUAGE = "en"
 
     private val TAG: String = ArticleBoundaryCallback::class.java.simpleName
 
@@ -36,20 +38,20 @@ class ArticleBoundaryCallback(
     }
 
     override fun onZeroItemsLoaded() {
-        requestAndSaveData(TOPIC, API_KEY)
+        requestAndSaveData(TOPIC, API_KEY, SOURCES, LANGUAGE)
     }
 
     override fun onItemAtEndLoaded(itemAtEnd: Article) {
-        requestAndSaveData(TOPIC, API_KEY)
+        requestAndSaveData(TOPIC, API_KEY, SOURCES, LANGUAGE)
     }
 
 
-    private fun requestAndSaveData(country_name: String, apiKey: String) {
+    private fun requestAndSaveData(country_name: String, apiKey: String, sources: String, language: String) {
         if (isRequestInProgress) return
 
         isRequestInProgress = true
         Log.e(TAG, "Val primera vez: $lastRequestPage")
-        searchNews(service, country_name,apiKey, lastRequestPage, NETWORK_PASE_SIZE, {
+        searchNews(service, country_name,apiKey, sources, language, lastRequestPage, NETWORK_PASE_SIZE, {
             articles -> cache.insert(articles, {
 
             lastRequestPage++

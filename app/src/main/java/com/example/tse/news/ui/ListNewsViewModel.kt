@@ -13,6 +13,7 @@ class ListNewsViewModel(private val repository: ArticleRepository) : ViewModel()
     private val API_KEY = "94294f4227bf4600849e1697d6a48ec1"
 
 
+
     private val articleResult: ArticleByTopicResult = repository.newsByCountry(TOPIC, API_KEY)
 
     val articles: LiveData<PagedList<Article>> = articleResult.data

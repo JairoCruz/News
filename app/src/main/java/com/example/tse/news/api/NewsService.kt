@@ -21,6 +21,8 @@ interface NewsService {
    fun  getNewsByCountry(
             @Query("q") topic: String,
             @Query("apiKey") apiKey: String,
+            @Query("sources") sources: String,
+            @Query("language") language: String,
             @Query("page") page: Int,
             @Query("pageSize") pageSize: Int
     ): Call<NewsByTopicResponse>
