@@ -32,6 +32,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$supportVersion"
     implementation "androidx.cardview:cardview:$supportVersion"
     implementation "com.google.android.material:material:$supportVersion"
+    implementation "com.android.support:support-v4:27.1.1"
 
 
     // ViewModel and LiveData

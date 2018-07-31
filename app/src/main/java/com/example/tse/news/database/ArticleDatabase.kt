@@ -6,13 +6,15 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import android.content.Context
 import com.example.tse.news.model.Article
+import com.example.tse.news.model.Source
 import com.example.tse.news.utils.Converters
 
-@Database(entities = [Article::class], version = 1)
+@Database(entities = [Article::class, Source::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class ArticleDatabase: RoomDatabase() {
 
     abstract fun articlesDao(): ArticleDao
+    abstract fun sourceDao(): SourceDao
 
     companion object {
 

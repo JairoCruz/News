@@ -10,5 +10,4 @@ data class NewsByTopicResponse(
         @SerializedName("totalResults") val total: Int = 0,
         @SerializedName("articles") val articles: List<Article> = emptyList(),
         val status: String? = null
-
 )

@@ -14,10 +14,12 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.LiveData
 import com.example.tse.news.Injection
 
 import com.example.tse.news.R
 import com.example.tse.news.model.Article
+import com.example.tse.news.model.Source
 import kotlinx.android.synthetic.main.fragment_list_news.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,6 +34,7 @@ private const val ARG_PARAM2 = "param2"
 class ListNewsFragment : Fragment() {
 
     private lateinit var viewModel: ListNewsViewModel
+    private lateinit var viewModelSource: ListSourcesNewsViewModel
     private val adapter = ArticleAdapter()
     private val TAG: String = ListNewsFragment::class.java.simpleName
 
@@ -41,6 +44,19 @@ class ListNewsFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(view!!.context))
                 .get(ListNewsViewModel::class.java)
+
+        viewModelSource = ViewModelProviders.of(this, Injection.provideViewModelFactorySourcesNews(view!!.context))
+                .get(ListSourcesNewsViewModel::class.java)
+
+
+
+        viewModelSource.sources.observe(this, Observer<List<Source>>{
+            Log.e(TAG, "Sources: ${it?.size}")
+        })
+
+        viewModelSource.networErrors.observe(this, Observer<String> {
+            Toast.makeText(view?.context, "Woooss ${it}", Toast.LENGTH_LONG).show()
+        })
 
         initAdapter()
         viewModel.articles

@@ -27,6 +27,15 @@ interface NewsService {
             @Query("pageSize") pageSize: Int
     ): Call<NewsByTopicResponse>
 
+    /**
+    *  Get the Sources News
+    * */
+    @GET("sources")
+    fun getSourcesNews(
+            @Query("apiKey") apiKey: String
+    ): Call<SourcesNewsResponse>
+
+
 
     companion object {
 
