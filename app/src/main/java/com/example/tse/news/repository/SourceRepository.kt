@@ -18,6 +18,7 @@ class SourceRepository(private val service: NewsService, private val cache: Sour
         requestAndSaveData(apiKey)
 
         val data = cache.sourcesNews()
+
         return SourceNewsResult(data, networkErrors)
     }
 

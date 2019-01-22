@@ -8,23 +8,22 @@
         <item name="colorAccent">@color/secondaryColor</item>
         <item name="android:textColorPrimary">@color/primaryTextColor</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:textColorSecondary">@color/primaryTextColor</item>
+       <!-- <item name="android:textColorSecondary">@color/primaryTextColor</item>-->
     </style>
 
     <!-- Toolbar Style -->
     <style name="Widget.News.Toolbar" parent="Widget.AppCompat.Toolbar">
         <item name="background">?attr/colorPrimary</item>
-        <item name="theme">@style/Theme.News</item>
+        <item name="android:theme">@style/Theme.News</item>
         <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Light</item>
         <item name="titleTextAppearance">@style/TextAppearance.News.Toolbar</item>
-        <item name="android:textColor">@color/primaryTextColor</item>
-
     </style>
 
     <style name="TextAppearance.News.Toolbar" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="textAllCaps">true</item>
         <item name="fontFamily">@font/roboto_medium</item>
     </style>
+
 
 
 </resources>

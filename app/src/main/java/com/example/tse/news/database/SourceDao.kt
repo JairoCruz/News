@@ -15,4 +15,5 @@ interface SourceDao {
 
     @Query("SELECT * FROM sources")
     fun getSources(): LiveData<List<Source>>
+
 }
