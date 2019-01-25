@@ -3,8 +3,8 @@ package com.example.tse.news.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "Sources")
-data class Source(
+@Entity(tableName = "SourceUser")
+data class SourceUser(
         @PrimaryKey
         val id: String,
         val name: String,
@@ -13,6 +13,4 @@ data class Source(
         val category: String,
         val language: String,
         val country: String
-
-
 )
