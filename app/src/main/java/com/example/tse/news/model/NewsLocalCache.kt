@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import android.util.Log
 import com.example.tse.news.database.ArticleDao
+import com.example.tse.news.database.ArticleDatabase
+import com.example.tse.news.database.SourceUserDao
 import java.util.concurrent.Executor
 
 class NewsLocalCache(private val articleDao: ArticleDao, private val ioExcecutor: Executor) {
@@ -18,8 +20,12 @@ class NewsLocalCache(private val articleDao: ArticleDao, private val ioExcecutor
         }
     }
 
-    fun articlesByCountry(): DataSource.Factory<Int, Article> {
-        return articleDao.getArticles()
+    fun listNews(): DataSource.Factory<Int, Article> {
+        return articleDao.getListNews()
+    }
+
+    fun listSources(): List<SourceIdName>{
+        return articleDao.getListSources()
     }
 
 }

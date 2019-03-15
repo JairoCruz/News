@@ -13,6 +13,9 @@ interface SourceUserDao {
     @Query("SELECT * FROM SourceUser")
     fun getSourcesUser() : LiveData<List<SourceUser>>
 
+    @Query("SELECT name FROM  SourceUser")
+    fun getSourceNameUser(): List<String>
+
     @Delete
     fun deleteSourceUser(sourceUser: SourceUser)
 }

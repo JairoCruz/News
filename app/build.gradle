@@ -38,7 +38,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
     //Test helpers for LiveData
-    testImplementation "androidx.arch.core:core-testing:$lifecycleVersion"
+   // testImplementation "androidx.arch.core:core-testing:$lifecycleVersion"
 
     // Room
     implementation "androidx.room:room-runtime:$roomVersion"
@@ -54,7 +54,7 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment:$navigationVersion"
     implementation "android.arch.navigation:navigation-ui:$navigationVersion"
     // Test helpers Navigation
-    androidTestImplementation "android.arch.navigation:navigation-testing:$navigationVersion"
+   // androidTestImplementation "android.arch.navigation:navigation-testing:$navigationVersion"
 
     // Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"

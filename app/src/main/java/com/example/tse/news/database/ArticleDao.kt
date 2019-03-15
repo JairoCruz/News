@@ -7,6 +7,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.tse.news.model.Article
+import com.example.tse.news.model.SourceIdName
+import com.example.tse.news.model.SourceUser
 
 
 @Dao
@@ -16,5 +18,8 @@ interface ArticleDao {
     fun insert(article: List<Article>)
 
     @Query("SELECT * FROM articles")
-    fun getArticles(): DataSource.Factory<Int, Article>
+    fun getListNews(): DataSource.Factory<Int, Article>
+
+    @Query("SELECT id, name FROM articles")
+    fun getListSources(): List<SourceIdName>
 }

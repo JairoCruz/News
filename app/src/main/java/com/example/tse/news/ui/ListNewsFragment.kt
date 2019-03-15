@@ -55,20 +55,38 @@ class ListNewsFragment : Fragment() {
         viewModelSourceUser = ViewModelProviders.of(this, Injection.provideViewModelFactorySourceUser(view!!.context))
                 .get(ListSourceUserViewModel::class.java)
 
+
         // SourcesUser ViewModel add observer to "observer" change
         viewModelSourceUser.sourcesUser.observe(this, Observer<List<SourceUser>> {
-            Log.e(TAG, "Fuentes del Usuario elegidas : ${it.size}")
-            var builder = StringBuilder()
-             for (i in it) {
-                 var source: String = i.name
-                 builder = builder.append(source + ",")
-              }
-              Log.e(TAG, "Lista de fuentes builder: " + builder)
+
+           if (it.isNotEmpty()){
+
+               Log.e(TAG, "Fuentes del Usuario elegidas desde observer : ${it.size}")
+
+               var builder = StringBuilder()
+               for (i in it) {
+                   var source: String = i.id
+                   builder = builder.append(source + ",")
+               }
+
+               Log.e(TAG, "Lista de fuentes builder desde observer: " + builder.toString())
+               viewModel.searchN(builder.toString())
+               showEmptyList(false)
+
+           }else{
+               showEmptyList(true)
+           }
+
+
         })
 
-//        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(view!!.context))
-//                .get(ListNewsViewModel::class.java)
-//
+
+        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(view!!.context))
+                .get(ListNewsViewModel::class.java)
+
+
+
+
 
         // Sources ViewModel assign
         viewModelSource = ViewModelProviders.of(this, Injection.provideViewModelFactorySourcesNews(view!!.context))
@@ -90,6 +108,7 @@ class ListNewsFragment : Fragment() {
 
             // Listener Button show Dialog select Sources news.
             btnSources.setOnClickListener {
+
 
                 // Initialize values from Sources News items selected
                 val itemSelected = ArrayList<Int>()
@@ -122,10 +141,20 @@ class ListNewsFragment : Fragment() {
                                         userSources.add(sourceUser)
                                     }
 
+                                    var builder = StringBuilder()
+                                    for (i in userSources) {
+                                        var source: String = i.id
+                                        builder = builder.append(source + ",")
+                                    }
+                                    // Log.e(TAG, "Lista de fuentes  en dialog builder: " + builder.toString())
+
                                     // Add userSources to viewModelSourceUser.insertSourceUser
                                     viewModelSourceUser.insertSourceUser(userSources)
 
                                     Log.e(TAG, "Lista tamano ${userSources.size}")
+
+                                    // When user selected sources, make first request from news
+                                    // viewModel.requestNewsUser(builder.toString())
 
 
                                     Toast.makeText(view?.context, "Tus datos se guardaran  ${userSources.size}", Toast.LENGTH_SHORT).show()
@@ -155,8 +184,8 @@ class ListNewsFragment : Fragment() {
             Toast.makeText(view?.context, "Woooss ${it}", Toast.LENGTH_LONG).show()
         })
 //
-//        initAdapter()
-//        viewModel.articles
+        initAdapter()
+        viewModel.articles
 
     }
 
@@ -175,8 +204,8 @@ class ListNewsFragment : Fragment() {
     private fun initAdapter() {
         list.adapter = adapter
         viewModel.articles.observe(this, Observer<PagedList<Article>> {
-            Log.e(TAG, "List: ${it?.size}")
-            showEmptyList(it?.size == 0)
+            Log.e(TAG, "List: ${it}")
+           // showEmptyList(it?.size == 0)
             adapter.submitList(it)
         })
 
@@ -184,14 +213,18 @@ class ListNewsFragment : Fragment() {
             Toast.makeText(view?.context, "\uD83D\uDE28 Wooops ${it}", Toast.LENGTH_LONG).show()
         })
 
+       // viewModel.listSize
+
     }
 
     private fun showEmptyList(show: Boolean) {
         if (show) {
-            emptyList.visibility = View.VISIBLE
+            containerEmptyList.visibility = View.VISIBLE
+            //emptyList.visibility = View.VISIBLE
             list.visibility = View.GONE
         } else {
-            emptyList.visibility = View.GONE
+            containerEmptyList.visibility = View.GONE
+            //emptyList.visibility = View.GONE
             list.visibility = View.VISIBLE
         }
     }

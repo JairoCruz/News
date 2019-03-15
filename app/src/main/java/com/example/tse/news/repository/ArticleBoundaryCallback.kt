@@ -8,13 +8,15 @@ import com.example.tse.news.api.NewsService
 import com.example.tse.news.api.searchNews
 import com.example.tse.news.model.Article
 import com.example.tse.news.model.NewsLocalCache
+import com.example.tse.news.model.SourceIdName
 
 class ArticleBoundaryCallback(
         private val service: NewsService,
-        private val cache: NewsLocalCache
+        private val cache: NewsLocalCache,
+        private val sourcesList: String
 ) : PagedList.BoundaryCallback<Article>() {
 
-    private val TOPIC = "apple"
+   private val TOPIC = "apple"
     private val API_KEY = "94294f4227bf4600849e1697d6a48ec1"
     private val SOURCES = "abc-news"
     private val LANGUAGE = "en"
@@ -38,20 +40,33 @@ class ArticleBoundaryCallback(
     }
 
     override fun onZeroItemsLoaded() {
-        requestAndSaveData(TOPIC, API_KEY, SOURCES, LANGUAGE)
+        Log.e(TAG, "ZERO ITEM ")
+       requestAndSaveData(TOPIC, API_KEY, sourcesList, LANGUAGE)
     }
 
     override fun onItemAtEndLoaded(itemAtEnd: Article) {
-        requestAndSaveData(TOPIC, API_KEY, SOURCES, LANGUAGE)
+        Log.e(TAG, "ULTIMO ITEM y no puedo llamar mas!" + itemAtEnd.toString())
+
+       requestAndSaveData(TOPIC,API_KEY, sourcesList, LANGUAGE)
+    }
+
+    fun requestNewsUser(listSourceUser: String){
+        requestAndSaveData(TOPIC, API_KEY,listSourceUser,LANGUAGE)
+    }
+
+    fun requestListSource(): Int{
+        return cache.listSources().size
     }
 
 
-    private fun requestAndSaveData(country_name: String, apiKey: String, sources: String, language: String) {
+    private fun requestAndSaveData(country_name: String,apiKey: String, sources: String, language: String) {
         if (isRequestInProgress) return
+        Log.e(TAG, "Pedir datos de: $sources")
 
         isRequestInProgress = true
         Log.e(TAG, "Val primera vez: $lastRequestPage")
-        searchNews(service, country_name,apiKey, sources, language, lastRequestPage, NETWORK_PASE_SIZE, {
+       // Log.e(TAG, "lista de fuentes desde articulo: " + cache.listSources().size)
+        searchNews(service/*, country_name*/,apiKey, sources, language, lastRequestPage, NETWORK_PASE_SIZE, {
             articles -> cache.insert(articles, {
 
             lastRequestPage++

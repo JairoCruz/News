@@ -14,6 +14,7 @@ import com.example.tse.news.utils.Converters
 @TypeConverters(Converters::class)
 abstract class ArticleDatabase: RoomDatabase() {
 
+
     abstract fun articlesDao(): ArticleDao
     abstract fun sourceDao(): SourceDao
     abstract  fun sourceUserDao(): SourceUserDao

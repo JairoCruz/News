@@ -15,11 +15,13 @@ import retrofit2.http.Query
 interface NewsService {
 
     /**
+     *
+     * API Endpoint EVERYTHING
     * Get News by country
     * */
     @GET("everything")
    fun  getNewsByCountry(
-            @Query("q") topic: String,
+            // @Query("q") topic: String,
             @Query("apiKey") apiKey: String,
             @Query("sources") sources: String,
             @Query("language") language: String,
@@ -28,6 +30,8 @@ interface NewsService {
     ): Call<NewsByTopicResponse>
 
     /**
+     *
+     * API EndPoint SOURCES
     *  Get the Sources News
     * */
     @GET("sources")
