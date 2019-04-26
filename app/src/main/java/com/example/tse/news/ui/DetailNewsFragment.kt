@@ -12,25 +12,11 @@ import com.bumptech.glide.Glide
 import com.example.tse.news.R
 import org.w3c.dom.Text
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  *
  */
 class DetailNewsFragment : Fragment() {
-
-
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-    }
-
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

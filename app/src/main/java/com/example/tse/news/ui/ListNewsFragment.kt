@@ -1,37 +1,25 @@
 package com.example.tse.news.ui
 
 
-import android.app.Dialog
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import android.content.Context
 import android.content.DialogInterface
-import android.graphics.Color
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedList
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import android.util.Log
-import android.view.*
-import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.LiveData
 import com.example.tse.news.Injection
-import com.example.tse.news.MainAdapter
-
 import com.example.tse.news.R
 import com.example.tse.news.model.Article
 import com.example.tse.news.model.Source
 import com.example.tse.news.model.SourceUser
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_list_news.*
-import java.lang.StringBuilder
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -61,16 +49,21 @@ class ListNewsFragment : Fragment() {
 
            if (it.isNotEmpty()){
 
-               Log.e(TAG, "Fuentes del Usuario elegidas desde observer : ${it.size}")
+               // Log.e(TAG, "Fuentes del Usuario elegidas desde observer : ${it.size}")
 
                var builder = StringBuilder()
+
                for (i in it) {
                    var source: String = i.id
                    builder = builder.append(source + ",")
                }
 
-               Log.e(TAG, "Lista de fuentes builder desde observer: " + builder.toString())
+              // Log.e(TAG, "Lista de fuentes builder desde observer: " + builder.toString())
+
+               // Pasar las fuentes seleccionadas por el usuario, para buscar las nociticas de las mismas.
                viewModel.searchN(builder.toString())
+
+
                showEmptyList(false)
 
            }else{
@@ -85,15 +78,11 @@ class ListNewsFragment : Fragment() {
                 .get(ListNewsViewModel::class.java)
 
 
-
-
-
         // Sources ViewModel assign
         viewModelSource = ViewModelProviders.of(this, Injection.provideViewModelFactorySourcesNews(view!!.context))
                 .get(ListSourcesNewsViewModel::class.java)
-//
-//
-//
+
+
         // Sources ViewModel add observer change
         viewModelSource.sources.observe(this, Observer<List<Source>> {
 
@@ -115,7 +104,7 @@ class ListNewsFragment : Fragment() {
 
                 // Create Dialog from List Sources News
                 val dialog = MaterialAlertDialogBuilder(view!!.context)
-                        .setTitle("Sources news")
+                        .setTitle(getString(R.string.SourcesName))
                         .setMultiChoiceItems(csListSources, null) { dialog, which, isChecked ->
                             run {
                                 // If the user checked the item, add it to the selectedItem
@@ -126,7 +115,7 @@ class ListNewsFragment : Fragment() {
                                 }
                             }
                         }
-                        .setPositiveButton("Ok") { _, _ ->
+                        .setPositiveButton(getString(R.string.chooseSourceDialogOk)) { _, _ ->
                             run {
 
                                 val userSources = ArrayList<SourceUser>()
@@ -141,38 +130,37 @@ class ListNewsFragment : Fragment() {
                                         userSources.add(sourceUser)
                                     }
 
-                                    var builder = StringBuilder()
-                                    for (i in userSources) {
-                                        var source: String = i.id
-                                        builder = builder.append(source + ",")
-                                    }
                                     // Log.e(TAG, "Lista de fuentes  en dialog builder: " + builder.toString())
 
-                                    // Add userSources to viewModelSourceUser.insertSourceUser
                                     viewModelSourceUser.insertSourceUser(userSources)
 
-                                    Log.e(TAG, "Lista tamano ${userSources.size}")
+                                   // Log.e(TAG, "Lista tamano ${userSources.size}")
 
-                                    // When user selected sources, make first request from news
-                                    // viewModel.requestNewsUser(builder.toString())
-
-
-                                    Toast.makeText(view?.context, "Tus datos se guardaran  ${userSources.size}", Toast.LENGTH_SHORT).show()
+                                  //  Toast.makeText(view?.context, "Tus datos se guardaran  ${userSources.size}", Toast.LENGTH_SHORT).show()
 
                                 } else {
-                                    Toast.makeText(view?.context, "Solo puedes elegir hasta 20 fuentes de informacion", Toast.LENGTH_SHORT).show()
+
+                                    Toast.makeText(view?.context, getString(R.string.chooseSourceDialogMsg), Toast.LENGTH_SHORT).show()
+
                                 }
                             }
                         }
-                        .setNegativeButton("Cancel") { _, _ -> Log.e(TAG, "Negativo") }
+                        .setNegativeButton(getString(R.string.chooseSourceDialogCancel)) { _, _ -> Log.e(TAG, "Negativo") }
+
                         .setCancelable(false)
+
                         .create()
+
                 dialog.show()
+
                 dialog.listView.isVerticalScrollBarEnabled = false
 
                 val btn: Button = dialog.getButton(DialogInterface.BUTTON_NEGATIVE)
+
                 val param: ViewGroup.MarginLayoutParams = btn.layoutParams as ViewGroup.MarginLayoutParams
+
                 param.rightMargin = 8
+
                 btn.layoutParams = param
 
             }
@@ -183,8 +171,9 @@ class ListNewsFragment : Fragment() {
         viewModelSource.networErrors.observe(this, Observer<String> {
             Toast.makeText(view?.context, "Woooss ${it}", Toast.LENGTH_LONG).show()
         })
-//
+
         initAdapter()
+
         viewModel.articles
 
     }
@@ -195,17 +184,17 @@ class ListNewsFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_list_news, container, false)
 
-
         return view
 
     }
 
 
     private fun initAdapter() {
+
         list.adapter = adapter
+
         viewModel.articles.observe(this, Observer<PagedList<Article>> {
-            Log.e(TAG, "List: ${it}")
-           // showEmptyList(it?.size == 0)
+           // Log.e(TAG, "List: ${it}")
             adapter.submitList(it)
         })
 
@@ -213,7 +202,6 @@ class ListNewsFragment : Fragment() {
             Toast.makeText(view?.context, "\uD83D\uDE28 Wooops ${it}", Toast.LENGTH_LONG).show()
         })
 
-       // viewModel.listSize
 
     }
 

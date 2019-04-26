@@ -12,4 +12,8 @@
     <string name="txtAuthorDummy">By Jairo Jose Pineda</string>
     <string name="btnChoose">choose</string>
     <string name="imgContentDescriptionNewsPaper">NewsPaper</string>
+    <string name="SourcesName">Sources</string>
+    <string name="chooseSourceDialogMsg">You can only choose 20 sources</string>
+    <string name="chooseSourceDialogCancel">Cancel</string>
+    <string name="chooseSourceDialogOk">Ok</string>
 </resources>

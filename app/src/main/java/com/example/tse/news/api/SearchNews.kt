@@ -11,7 +11,6 @@ private const val TAG = "SearchNews"
 
 
 fun searchNews(service: NewsService,
-               // topic: String,
                apiKey: String,
                sources: String,
                language: String,
@@ -22,7 +21,7 @@ fun searchNews(service: NewsService,
 
    // Log.e(TAG, "Query: $topic")
 
-    service.getNewsByCountry(/* topic, */ apiKey, sources, language, page, pageSize).enqueue(
+    service.getNewsByCountry(apiKey, sources, language, page, pageSize).enqueue(
             object : Callback<NewsByTopicResponse> {
                 override fun onFailure(call: Call<NewsByTopicResponse>?, t: Throwable?) {
                     Log.e(TAG, "Error en obtener los datos")

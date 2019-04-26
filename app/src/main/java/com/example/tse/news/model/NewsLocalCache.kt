@@ -1,11 +1,8 @@
 package com.example.tse.news.model
 
-import androidx.lifecycle.LiveData
-import androidx.paging.DataSource
 import android.util.Log
+import androidx.paging.DataSource
 import com.example.tse.news.database.ArticleDao
-import com.example.tse.news.database.ArticleDatabase
-import com.example.tse.news.database.SourceUserDao
 import java.util.concurrent.Executor
 
 class NewsLocalCache(private val articleDao: ArticleDao, private val ioExcecutor: Executor) {

@@ -1,12 +1,9 @@
 package com.example.tse.news.ui
 
+import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import android.util.Log
-import android.view.ViewGroup
-
 import com.example.tse.news.model.Article
 
 
