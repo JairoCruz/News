@@ -24,6 +24,16 @@
         <item name="fontFamily">@font/roboto_medium</item>
     </style>
 
+    <!-- Activity Splash style -->
+    <style name="SplashScreenTheme" parent="Theme.News">
+        <item name="colorPrimaryDark">@color/primaryColor</item>
+        <item name="android:windowBackground">
+            @drawable/splash_screen_background
+        </item>
+    </style>
+
+
+
 
 
 </resources>

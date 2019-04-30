@@ -14,5 +14,5 @@
     <color name="title">#000000</color>
     <color name="author">#262626</color>
     <color name="background_image">#b2b2b2</color>
-    <color name="backgroundColor">#ffffff</color>
+    <color name="backgroundColor">#FFFFFF</color>
 </resources>
