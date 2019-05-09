@@ -18,6 +18,7 @@ import com.example.tse.news.R
 import com.example.tse.news.model.Article
 import com.example.tse.news.model.Source
 import com.example.tse.news.model.SourceUser
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.fragment_list_news.*
 
@@ -33,10 +34,13 @@ class ListNewsFragment : Fragment() {
     private val adapter = ArticleAdapter()
     private val TAG: String = ListNewsFragment::class.java.simpleName
     private var lista: List<Source> = emptyList()
+    private lateinit var shimmerContainer: ShimmerFrameLayout
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+        shimmerContainer = shimmer_view_container
 
 
         // SourceUser ViewModel assign
@@ -188,6 +192,17 @@ class ListNewsFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        shimmerContainer.startShimmer()
+        showEmptyList(false)
+    }
+
+    override fun onPause() {
+        shimmerContainer.stopShimmer()
+        super.onPause()
+    }
+
 
     private fun initAdapter() {
 
@@ -195,7 +210,13 @@ class ListNewsFragment : Fragment() {
 
         viewModel.articles.observe(this, Observer<PagedList<Article>> {
            // Log.e(TAG, "List: ${it}")
-            adapter.submitList(it)
+            if (it.isNotEmpty()){
+                adapter.submitList(it)
+                shimmerContainer.stopShimmer()
+                shimmerContainer.visibility = View.GONE
+            }
+
+
         })
 
         viewModel.networErrors.observe(this, Observer<String> {

@@ -37,6 +37,7 @@ ext{
 
 
     supportVersion = '1.0.0'
+    shimmerVersion = '0.4.0'
 
 
     roomVersion = '2.0.0-alpha1'

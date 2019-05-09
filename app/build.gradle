@@ -66,6 +66,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttpLoggingInterceptorVersion"
 
+    // Shimmer Facebook
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
+
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test:runner:$supportTestVersion"
