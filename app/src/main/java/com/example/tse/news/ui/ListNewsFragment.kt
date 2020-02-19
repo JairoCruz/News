@@ -199,8 +199,8 @@ class ListNewsFragment : Fragment() {
     }
 
     override fun onPause() {
-        shimmerContainer.stopShimmer()
         super.onPause()
+        shimmerContainer.stopShimmer()
     }
 
 
